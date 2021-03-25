@@ -73,12 +73,24 @@ export default class Visualizer extends React.Component {
         return random;
     }
 
+    lastColorChange(original, track, multiplier){
+        setTimeout(()=>{
+            for(let i=0;i<this.state.array.length;i++){
+                setTimeout(()=>{
+                    original[i].style.color="purple";
+                }, i*15);
+            }
+        },track.length*multiplier);
+    }
+
+    
     //Bubble Sort
-    bubbleSort = () => {
+    bubbleSort = async () => {
 
         const track = bubbleSortAlgorithm(this.state.array);
        
         const original = document.getElementsByClassName("arrayBar");
+        
         for (var i = 0; i < track.length; i++) {
 
           
@@ -95,9 +107,13 @@ export default class Visualizer extends React.Component {
                     firstIndexStyle.color = "red";
                     secondIndexStyle.color = "blue";
                     
-                }, i);
+                }, i)
             
         }
+
+        
+        this.lastColorChange(original, track, 1);
+        
     }
 
     //insertionSort
@@ -125,6 +141,8 @@ export default class Visualizer extends React.Component {
    
 
         }
+
+        this.lastColorChange(original, track, 1);
     }
     //SelectionSort
     selectionSort(){
@@ -150,6 +168,7 @@ export default class Visualizer extends React.Component {
    
 
         }
+        this.lastColorChange(original, track, 30);
     }
 
 
